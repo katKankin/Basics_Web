@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Voto Electrónico</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="logic.js"></script>
+        
+    </head>
+
+    <body>
+
+        
+            <h2> Bienvenido </h2>
+            <hr>
+
+            <h1>Descripción:</h1><br>
+            <input id="descripinput" type="text" name="descripcion" value="Insertar" onfocus="this.value=''"><br><br>
+
+            <h1>Opciones:</h1><br>
+            <div id="contenido"></div>    
+           
+            <input id="opcion" type="text" />
+            <button onclick="agregar_opcion(this)">Agregar opción</button>
+
+            <h1>Modalidad:</h1><br>
+            <div id="opciones"> 
+            <input type="radio" name="modalidad" value="unica" checked> Única<br>
+            <input type="radio" name="modalidad" value="multiple"> Múltiple<br>
+            </div>
+
+            <h1>Cantidad según modalidad:</h1><br>
+            <input id="redondo" type="text" name="cantidad" value="Insertar" onfocus="this.value=''"><br>
+
+            <h1>Habilitar voto en blanco:</h1><br>
+            <div id="opciones"> 
+            <input type="radio" name="votoBlanco" value="blancoSi" checked> Sí<br>
+            <input type="radio" name="votoBlanco" value="blancoNo"> No<br>
+            </div>
+
+            <h1>Votación pública:</h1><br>
+            <div id="opciones"> 
+            <input type="radio" name="votoPublic" value="publicSi" checked> Sí<br>
+            <input type="radio" name="votoPublic" value="publicNo"> No<br> <br>
+            </div>
+
+            <button id="redondo" type="button" onclick="alert('Pendiente')">Actualizar</button>
+        
+
+    </body>
+</html>
