@@ -1,49 +1,57 @@
-body{
+body {
     background: url(wp1.jpg);
     height: 100vh;
     width: 100vw;
     overflow: auto;
-  }
+}
+
 h1 {
     color: rgb(250, 239, 93);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 100%;
 }
-h2{
+
+h2 {
     text-align: center;
     color: rgb(41, 118, 153);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 200%;
 }
 
-#redondo{
+#redondo,
+#restriccion,
+#votar {
     border-radius: 20px 20px;
     size: 45%;
     height: 30px;
     width: 300px
 }
-#descripinput{
+
+#descripinput {
     border-radius: 20px 20px;
     height: 30px;
     width: 500px
-
 }
-#opciones{
+
+#opciones_m,
+#opciones_v,
+#opciones_b {
     color: whitesmoke;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#contenido
-{
+
+#contenido,
+#votacion {
     width: 400px;
     border-radius: 5px;
-    border: 2px solid  rgb(250, 239, 93);
+    border: 2px solid rgb(250, 239, 93);
     min-height: 50px;
     max-height: 400px;
     overflow: auto;
 }
 
-#contenido>div
-{
+#contenido>div,
+#votacion>div {
     margin: 5px;
     padding: 5px;
     position: relative;
@@ -52,8 +60,7 @@ h2{
     color: whitesmoke;
 }
 
-#contenido>div div
-{
+#contenido>div div {
     border-radius: 5px;
     text-align: right;
     font-size: 0em;
@@ -61,14 +68,31 @@ h2{
     transition-delay: 0.2s;
 }
 
-#contenido>div:hover div
-{
+#contenido>div:hover div {
     transition: all 0.5s ease-in;
     transition-delay: 0.5s;
     font-size: 1.5em;
 }
 
-#contenido>div:hover
-{
+#contenido>div:hover {
     background-color: rgba(137, 43, 226, 0.1);
+}
+
+#mostrarDescr {
+    text-align: center;
+    color: rgb(41, 118, 153);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 200%;
+}
+
+#mostrarOpc {
+    color: rgb(243, 243, 243);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70%;
+}
+
+#votacion {
+    color: rgb(243, 243, 243);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 100%;
 }

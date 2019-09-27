@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Voto Electrónico</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="logic.js"></script>
-        
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>Voto Electrónico</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="logic.js"></script>
 
-        
-            <h2> Bienvenido </h2>
-            <hr>
+</head>
 
-            <h1>Descripción:</h1><br>
-            <input id="descripinput" type="text" name="descripcion" value="Insertar" onfocus="this.value=''"><br><br>
+<body>
 
-            <h1>Opciones:</h1><br>
-            <div id="contenido"></div>    
-           
-            <input id="opcion" type="text" />
-            <button onclick="agregar_opcion(this)">Agregar opción</button>
 
-            <h1>Modalidad:</h1><br>
-            <div id="opciones"> 
-            <input type="radio" name="modalidad" value="unica" checked> Única<br>
-            <input type="radio" name="modalidad" value="multiple"> Múltiple<br>
-            </div>
+    <h2> Bienvenido </h2>
+    <hr>
 
-            <h1>Cantidad según modalidad:</h1><br>
-            <input id="redondo" type="text" name="cantidad" value="Insertar" onfocus="this.value=''"><br>
+    <h1>Descripción:</h1><br>
+    <input id="descripinput" type="text" name="descripcion" value="Insertar" onfocus="this.value=''"><br><br>
 
-            <h1>Habilitar voto en blanco:</h1><br>
-            <div id="opciones"> 
-            <input type="radio" name="votoBlanco" value="blancoSi" checked> Sí<br>
-            <input type="radio" name="votoBlanco" value="blancoNo"> No<br>
-            </div>
+    <h1>Opciones:</h1><br>
+    <div id="contenido"></div>
 
-            <h1>Votación pública:</h1><br>
-            <div id="opciones"> 
-            <input type="radio" name="votoPublic" value="publicSi" checked> Sí<br>
-            <input type="radio" name="votoPublic" value="publicNo"> No<br> <br>
-            </div>
+    <input id="opcion" type="text" />
+    <button onclick="agregar_opcion(this)">Agregar opción</button>
 
-            <button id="redondo" type="button" onclick="alert('Pendiente')">Actualizar</button>
-        
+    <h1>Modalidad:</h1><br>
+    <div id="opciones_m">
+        <input type="radio" name="modalidad" id="mod_u" value="unica" onclick="Checkradiobutton()" checked> Única<br>
+        <input type="radio" name="modalidad" id="mod_m" value="multiple" onclick="Checkradiobutton()"> Múltiple<br>
+    </div>
 
-    </body>
+    <h1>Cantidad de opciones disponibles (modalidad selección múltiple):</h1><br>
+    <input id="restriccion" type="text" name="cantidad" value="Insertar habilitado en modo selección múltiple" onfocus="this.value=''" disabled="disabled"><br>
+
+    <h1>Habilitar voto en blanco:</h1><br>
+    <div id="opciones_b">
+        <input type="radio" name="votoBlanco" id="blanco_s" value="blancoSi" checked> Sí<br>
+        <input type="radio" name="votoBlanco" id="blanco_n" value="blancoNo"> No<br>
+    </div>
+
+    <h1>Votación pública:</h1><br>
+    <div id="opciones_v">
+        <input type="radio" name="votoPublic" id="publica_s" value="publicSi" checked> Sí<br>
+        <input type="radio" name="votoPublic" id="publica_n" value="publicNo"> No<br> <br>
+    </div>
+
+
+    <button id="redondo" type="button" onclick="obtener_configuracion()">Actualizar</button>
+    <hr>
+    <hr>
+    <p id="mostrarDescr"></p>
+    <h1>Seleccione:</h1>
+    <div id="votacion"></div>
+
+    <button id="votar" type="button" onclick="votar()">Votar</button>
+
+
+</body>
+
 </html>
