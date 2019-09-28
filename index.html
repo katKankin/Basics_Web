@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
     <title>Voto Electrónico</title>
     <link rel="stylesheet" href="styles.css">
     <script src="logic.js"></script>
@@ -10,15 +11,17 @@
 </head>
 
 <body>
-
+    
 
     <h2> Bienvenido </h2>
     <hr>
 
     <h1>Descripción:</h1><br>
-    <input id="descripinput" type="text" name="descripcion" value="Insertar" onfocus="this.value=''"><br><br>
+    <input id="descripinput" type="text" name="descripcion" onfocus="this.value=''"><br><br>
 
-    <h1>Opciones:</h1><br>
+    <h1>Opciones:</h1>
+    <h1>(Si desea eliminar opción mantenga el mouse sobre ella y dé click en la X)</h1>
+    <br>
     <div id="contenido"></div>
 
     <input id="opcion" type="text" />
@@ -26,12 +29,12 @@
 
     <h1>Modalidad:</h1><br>
     <div id="opciones_m">
-        <input type="radio" name="modalidad" id="mod_u" value="unica" onclick="Checkradiobutton()" checked> Única<br>
-        <input type="radio" name="modalidad" id="mod_m" value="multiple" onclick="Checkradiobutton()"> Múltiple<br>
+        <input type="radio" name="modalidad" id="mod_u" value="unica" onclick="check_radio_button()" checked> Única<br>
+        <input type="radio" name="modalidad" id="mod_m" value="multiple" onclick="check_radio_button()"> Múltiple<br>
     </div>
 
     <h1>Cantidad de opciones disponibles a marcar (modalidad selección múltiple):</h1><br>
-    <input id="restriccion" type="number" name="cantidad" value="2" disabled="disabled"><br>
+    <input id="restriccion" type="number" name="cantidad" value="1" disabled="disabled"><br>
 
     <h1>Habilitar voto en blanco:</h1><br>
     <div id="opciones_b">
@@ -46,7 +49,7 @@
     </div>
 
 
-    <button id="redondo" type="button" onclick="obtener_configuracion()">Actualizar</button>
+    <button id="redondo" type="button" onclick="obtener_configuracion()">Actualizar votación</button>
     <hr>
     <hr>
     <p id="mostrarDescr"></p>

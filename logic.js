@@ -1,4 +1,12 @@
-function Checkradiobutton() {
+var cantidadPermitida = 0;
+var tipo_votacion="votacion";
+
+
+/**
+ * @function check_radio_button Determina si habilita el campo de texto dedicado a obtener la cantidad de opciones posibles a marcar para modalidad "Selección Múltiple"
+ * @returns {undefined} 
+ */
+function check_radio_button() {
 
     if (document.getElementById("mod_u").checked) {
         document.getElementById("restriccion").disabled = true;
@@ -7,7 +15,11 @@ function Checkradiobutton() {
         document.getElementById("restriccion").min = 2;
     }
 }
-
+/**
+ * @function agregar_opcion Agrega opción en la creación de una votación
+ * @param obj Recibe una nueva opción
+ * @returns {undefined} 
+ */
 function agregar_opcion(obj) {
     let texto = document.getElementById("opcion");
     if (texto.value != "") {
@@ -24,12 +36,21 @@ function agregar_opcion(obj) {
     }
 }
 
+/**
+ * @function eliminar_opcion Agrega opción en la creación de una votación
+ * @param obj Recibe una opción
+ * @returns {undefined} 
+ */
 function eliminar_opcion(obj) {
     let padre = obj.parentNode.parentNode;
     let tarea = obj.parentNode;
     padre.removeChild(tarea);
 }
 
+/**
+ * @function obtener_configuracion Obtiene la configuración necesaria para la creación de un objeto JSON 
+ * @returns {undefined} 
+ */
 function obtener_configuracion() {
     var mod = []; 
     var enblanco, espublica;
@@ -37,8 +58,14 @@ function obtener_configuracion() {
     var op_contenedor = document.getElementById("contenido");
     var cantidad = document.getElementById("restriccion").value;
     var opciones = [];
+    
+
+    if (descr == "") {
+        return alert("Descripción requerida\nIntente de nuevo")
+    }
+
     if(cantidad>op_contenedor.childNodes.length ){
-        return alert("La cantidad de opciones no es congruente con la cantidad de opciones disponibles a marcar\n Por favor intente de nuevo")
+        return alert("La cantidad de opciones no es congruente con la cantidad de opciones disponibles a marcar\nIntente de nuevo")
     }
     if (op_contenedor.childNodes.length > 0) {
         for (i = 0; i < op_contenedor.childNodes.length; i++) {
@@ -48,10 +75,6 @@ function obtener_configuracion() {
         return alert("Por favor agregue al menos 2 opciones")
     }
 
-
-    if (descr == "") {
-        descr = "DESCRIPCION NULA";
-    }
     if (document.getElementById('mod_u').checked) {
         mod.push('única');
         mod.push(1);
@@ -85,6 +108,11 @@ function obtener_configuracion() {
 
 }
 
+/**
+ * @function actualizar_votacion Crea la interfaz gráfica de una nueva votación
+ * @param mijson Recibe un objeto JSON con la configuración necesaria de una nueva votación
+ * @returns {undefined} 
+ */
 function actualizar_votacion(mijson) //aqui se recibe un json
 {
     var votacion = document.getElementById("votacion");
@@ -112,15 +140,38 @@ function actualizar_votacion(mijson) //aqui se recibe un json
 
     if(mijson.votacion_publica!=true){
         document.getElementById("votacion").id = "votacion_priv";
+        tipo_votacion = "votacion_priv";
     }
+    cantidadPermitida= mijson.modalidad[1];
+    
 
-    //agregar masiel 
 }
 
+/**
+ * @function votar Realiza una votación tomando en cuenta los parámetros establecidos en la interfaz de usuario
+ * @returns {undefined} 
+ */
 function votar() {
-    //cuando "votar" verificar las opciones, al menos 1 select
-    //si no mensaje d q seleccione algo
+    var cantidadSeleccionados=0;
+    var op = document.getElementById(tipo_votacion);
+    for(var i=1; i<document.getElementById(tipo_votacion).childNodes.length; i+=2){
+        if(document.getElementById(tipo_votacion).childNodes[i].checked==true){
+            cantidadSeleccionados= cantidadSeleccionados +1;
+        }
+    }
+  
+    if(cantidadSeleccionados > cantidadPermitida){
+        alert("Su selección pasó el límite permitido")
+    } else if(cantidadSeleccionados == 0){
+        alert("Por favor seleccione al menos una opción")
+    } else {
+        alert("Su voto se ha efectuado")
+        
+        // Una vez que se efectúa el voto se limpia el nodo padre donde se encuentran las opciones creadas anteriormente
+        while (op.firstChild) {
+            op.removeChild(op.firstChild);
+        }
+    }
+    
 
-    //y de fijo  verificar modalidad y cantidad con lo seleccionado
-    //si no mensaje de paso del límite
 }
