@@ -69,7 +69,7 @@ function obtener_configuracion() {
         "voto_en_blanco": enblanco,
         "votacion_publica": espublica
     };
-    console.log(config);
+    console.log(config.mod);
     actualizar_votacion(config);
 
 }
