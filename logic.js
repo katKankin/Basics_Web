@@ -50,7 +50,7 @@ function obtener_configuracion() {
     }
     if (document.getElementById('mod_u').checked) {
         mod.push('única');
-        mod.push(cantidad);
+        mod.push(1);
     } else {
         mod.push('múltiple');
         mod.push(cantidad);
