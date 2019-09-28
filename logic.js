@@ -4,6 +4,7 @@ function Checkradiobutton() {
         document.getElementById("restriccion").disabled = true;
     } else {
         document.getElementById("restriccion").disabled = false;
+        document.getElementById("restriccion").min = 2;
     }
 }
 
@@ -34,8 +35,11 @@ function obtener_configuracion() {
     var enblanco, espublica;
     var descr = document.getElementById("descripinput").value;
     var op_contenedor = document.getElementById("contenido");
-    var cantidad = Number(document.getElementById("restriccion").value);
+    var cantidad = document.getElementById("restriccion").value;
     var opciones = [];
+    if(cantidad>op_contenedor.childNodes.length ){
+        return alert("La cantidad de opciones no es congruente con la cantidad de opciones disponibles a marcar\n Por favor intente de nuevo")
+    }
     if (op_contenedor.childNodes.length > 0) {
         for (i = 0; i < op_contenedor.childNodes.length; i++) {
             opciones.push(op_contenedor.childNodes[i].childNodes[1].textContent);
@@ -53,7 +57,7 @@ function obtener_configuracion() {
         mod.push(1);
     } else {
         mod.push('múltiple');
-        mod.push(cantidad);
+        mod.push(cantidad);        
     }
 
     if (document.getElementById('blanco_s').checked) {
@@ -81,16 +85,8 @@ function obtener_configuracion() {
 
 }
 
-function actualizar_votacion(config) //aqui se recibe un json
+function actualizar_votacion(mijson) //aqui se recibe un json
 {
-    var mijson = {
-        "descripcion": "Dar aval el proyecto de ley #12345",
-        "opciones": ["a favor", "en contra"],
-        "modalidad": { "modo": "unica", "cantidad": 1 },
-        "enBlanco": true,
-        "publica": false
-    };
-
     var votacion = document.getElementById("votacion");
 
     document.getElementById("mostrarDescr").innerHTML = mijson.descripcion;
@@ -104,7 +100,7 @@ function actualizar_votacion(config) //aqui se recibe un json
         votacion.appendChild(text);
         votacion.appendChild(votoOpcion);
     }
-    if (mijson.enBlanco != false) {
+    if (mijson.voto_en_blanco != false) {
         var votoBlanco = document.createElement("input");
         votoBlanco.type = "checkbox";
         votoBlanco.id = "enBlanco";
@@ -112,6 +108,10 @@ function actualizar_votacion(config) //aqui se recibe un json
         var text_blanco = document.createTextNode("En blanco");
         votacion.appendChild(text_blanco);
         votacion.appendChild(votoBlanco);
+    }
+
+    if(mijson.votacion_publica!=true){
+        document.getElementById("votacion").id = "votacion_priv";
     }
 
     //agregar masiel 

@@ -30,8 +30,8 @@
         <input type="radio" name="modalidad" id="mod_m" value="multiple" onclick="Checkradiobutton()"> Múltiple<br>
     </div>
 
-    <h1>Cantidad de opciones disponibles (modalidad selección múltiple):</h1><br>
-    <input id="restriccion" type="text" name="cantidad" value="Insertar habilitado en modo selección múltiple" onfocus="this.value=''" disabled="disabled"><br>
+    <h1>Cantidad de opciones disponibles a marcar (modalidad selección múltiple):</h1><br>
+    <input id="restriccion" type="number" name="cantidad" value="2" disabled="disabled"><br>
 
     <h1>Habilitar voto en blanco:</h1><br>
     <div id="opciones_b">
@@ -52,7 +52,6 @@
     <p id="mostrarDescr"></p>
     <h1>Seleccione:</h1>
     <div id="votacion"></div>
-
     <button id="votar" type="button" onclick="votar()">Votar</button>
 
 

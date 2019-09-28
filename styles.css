@@ -40,8 +40,7 @@ h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#contenido,
-#votacion {
+#contenido{
     width: 400px;
     border-radius: 5px;
     border: 2px solid rgb(250, 239, 93);
@@ -51,7 +50,8 @@ h2 {
 }
 
 #contenido>div,
-#votacion>div {
+#votacion>div,
+#mivoto>div {
     margin: 5px;
     padding: 5px;
     position: relative;
@@ -92,7 +92,31 @@ h2 {
 }
 
 #votacion {
+    width: 400px;
+    border-radius: 5px;
+    border: 2px solid rgb(250, 239, 93);
+    min-height: 50px;
+    max-height: 400px;
+    overflow: auto;
     color: rgb(243, 243, 243);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 100%;
+}
+
+#votacion_priv{
+    width: 400px;
+    border-radius: 5px;
+    border: 2px solid rgb(250, 239, 93);
+    min-height: 50px;
+    max-height: 400px;
+    overflow: auto;
+    color: rgb(243, 243, 243);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 100%;
+    filter:blur(6px);
+    transition-duration:5s;
+}
+#votacion_priv:hover{
+    filter:blur(0px);
+    transition-duration:5s;
 }
