@@ -30,14 +30,18 @@ function eliminar_opcion(obj) {
 }
 
 function obtener_configuracion() {
-    var mod, enblanco, espublica;
+    var mod = []; 
+    var enblanco, espublica;
     var descr = document.getElementById("descripinput").value;
     var op_contenedor = document.getElementById("contenido");
+    var cantidad = Number(document.getElementById("restriccion").value);
     var opciones = [];
     if (op_contenedor.childNodes.length > 0) {
         for (i = 0; i < op_contenedor.childNodes.length; i++) {
             opciones.push(op_contenedor.childNodes[i].childNodes[1].textContent);
         }
+    } else{
+        return alert("Por favor agregue al menos 2 opciones")
     }
 
 
@@ -45,21 +49,23 @@ function obtener_configuracion() {
         descr = "DESCRIPCION NULA";
     }
     if (document.getElementById('mod_u').checked) {
-        mod = 'única';
+        mod.push('única');
+        mod.push(cantidad);
     } else {
-        mod = 'múltiple';
+        mod.push('múltiple');
+        mod.push(cantidad);
     }
 
     if (document.getElementById('blanco_s').checked) {
-        enblanco = 'habilitado';
+        enblanco = true;
     } else {
-        enblanco = 'deshabilitado';
+        enblanco = false;
     }
 
     if (document.getElementById('publica_s').checked) {
-        espublica = 'habilitado';
+        espublica = true;
     } else {
-        espublica = 'deshabilitado';
+        espublica = false;
     }
 
     var config = {
@@ -69,7 +75,8 @@ function obtener_configuracion() {
         "voto_en_blanco": enblanco,
         "votacion_publica": espublica
     };
-    console.log(config.mod);
+    console.log(config);
+    
     actualizar_votacion(config);
 
 }
